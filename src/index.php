@@ -18,9 +18,11 @@
             echo "<div class='product_list_container'>";
             // Affichage d'une ligne de 4 produits
             for ($i = 0; $i < 4; $i++) {
+                echo "<a href='features/produit/produit.php'>";
                 echo "<div class='product_card'>
                         <h2>Produit $i</h2>
                     </div>"; 
+                echo "</a>";
             }
             echo "</div>";
         ?>
@@ -36,9 +38,11 @@
 
                 // Affichage d'une ligne de 4 produits
                 for ($i = 0; $i < 4; $i++) {
+                    echo "<a href='features/produit/produit.php'>";
                     echo "<div class='product_card'>
                             <h2>Produit $i</h2>
                         </div>"; 
+                    echo "</a>";
                 }
 
                 echo "</div>";
