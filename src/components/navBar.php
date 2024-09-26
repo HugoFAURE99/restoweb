@@ -2,7 +2,7 @@
 echo "<link rel='stylesheet' href='/projets/RestoWeb/restoweb/src/components/navBar.css'>";
 
 //Table that contains the navigation bar buttons info
-$navBar = array(
+$navBarElements = array(
     array("label" => "Accueil", "link" => "/projets/RestoWeb/restoweb/src/index.php"),
     array("label" => "Connection", "link" => "/projets/RestoWeb/restoweb/src/features/connection/connection.php"),
     //Add array here that contains the navigation bar buttons info to add a button to the navigation bar
@@ -16,8 +16,8 @@ echo "<ul>";
 
 echo "<li id='app_title'>Resto Web</li>";
 
-//echo <li> with a link for each item in the $navBar array
-foreach ($navBar as $item) {
+//echo <li> with <a> link for each item in the $navBarElements array
+foreach ($navBarElements as $item) {
     // If the current page URL is the same as the link, add class "isActive" to <li>
     $activeClass = ($currentPageURL == $item["link"]) ? "isActive" : "";
 
