@@ -55,10 +55,9 @@
 
 hr {
     width: 60%;
-    height: 1px;
-    border: solid;
-    border-width: 1px;
-    border-color: rgb(83, 83, 83);
+    height: 2px;
+    border: none;
+    background-color: slategrey;
 }
 
 .product_card_link {
