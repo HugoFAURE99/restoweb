@@ -15,7 +15,7 @@
 
 
     <div class="page">
-        <div class="connect_container">
+        <div class="payment_container">
             <h1>Paiement de votre commande</h1>
             <form action="../confirmation/confirmation.php" method="post">
                 <input type="text" name="cb_number" placeholder="N° de CB">

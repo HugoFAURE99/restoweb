@@ -13,9 +13,11 @@
     include "../../components/navBar.php";
     ?>
     <div class="page">
-        <h2>Commande confirmée!</h2>
-        <p>Merci de votre commande!</p>
-        <a href="../../index.php">Retour à la page d'accueil</a>
+        <div class='confirmation_container'>
+            <h2>Commande confirmée!</h2>
+            <p>Merci de votre commande!</p>
+            <a href="../../index.php">Retour à la page d'accueil</a>
+        </div>
     </div>
 </body>
 </html>
