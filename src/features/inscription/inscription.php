@@ -1,4 +1,28 @@
-1) formulaire inspiré de connection.php
-2) a la fin quand tu appuye sur submit, ca redirige vers la page connexion.php
-3) avec le lien du fichier connection.php dans le action 
-3) le css garder le meme, coier coller et le mettre dans "inscritpion.css"
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../app.css">
+    <link rel="stylesheet" href="inscription.css">
+    <title>Resto Web</title>
+</head>
+<body>
+    <?php
+    include "../../components/navBar.php";
+    ?>
+
+    <div class="page">
+        <div class="connect_container">
+            <h1>Connexion</h1>
+            <form action="../connection/index.php" method="post">
+                <input type="text" name="login" placeholder="Login">
+                <input type="text" name="mail" placeholder="Mail">
+                <input type="password" name="password" placeholder="Password">
+		        <input type="password" name="password" placeholder="Password">
+                <input type="submit" value="Accueil">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
