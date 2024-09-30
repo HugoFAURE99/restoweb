@@ -13,14 +13,14 @@
     ?>
 
     <div class="page">
-        <div class="connect_container">
-            <h1>Connexion</h1>
+        <div class="inscription_container">
+            <h1>Inscription</h1>
             <form action="../connection/index.php" method="post">
                 <input type="text" name="login" placeholder="Login">
                 <input type="text" name="mail" placeholder="Mail">
                 <input type="password" name="password" placeholder="Password">
 		        <input type="password" name="password" placeholder="Password">
-                <input type="submit" value="Accueil">
+                <input type="submit" value="S'inscrire">
             </form>
         </div>
     </div>
