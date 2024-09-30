@@ -34,7 +34,6 @@
             <h1>Total</h1>
             <div class='product_list_container'>
                 <?php
-                    // Affichage d'une ligne de produits
                    echo "<table>
                         <tr>
                             <th>Produit(s)</th>
