@@ -14,11 +14,11 @@
     ?>
     <div class="page">
         <?php
-        //4 produits les plus commandés
+        //Display 4 more ordered products
             echo "<div class='product_list_container'>";
-            // Affichage d'une ligne de 4 produits
+            //Display a line of 4 products
             for ($i = 0; $i < 4; $i++) {
-                echo "<a href='features/produit/produit.php'>";
+                echo "<a href='features/produit/produit.php?id=$i' class='product_card_link'>";
                 echo "<div class='product_card'>
                         <h2>Produit $i</h2>
                     </div>"; 
@@ -30,15 +30,15 @@
         <hr>
 
         <?php
-        //Affichage de tous les produits
-            //Affichage de j lignes de 4 produits
+        //Display of all products
+            //Display of j lines of 4 products
             for ($j = 0; $j < 3; $j++) {
 
                 echo "<div class='product_list_container'>";
 
-                // Affichage d'une ligne de 4 produits
+                //Display a line of 4 products
                 for ($i = 0; $i < 4; $i++) {
-                    echo "<a href='features/produit/produit.php'>";
+                    echo "<a href='features/produit/produit.php?id=$i' class='product_card_link'>";
                     echo "<div class='product_card'>
                             <h2>Produit $i</h2>
                         </div>"; 
