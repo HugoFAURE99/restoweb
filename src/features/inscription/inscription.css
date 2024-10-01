@@ -12,9 +12,8 @@
 .inscription_container {
     width: 25%;
     min-width: 300px;
-    height: 30%;
-    max-height: 300px;
     display: flex;
+    padding: 1.2rem;
     flex-direction: column;
     justify-content: center;
     align-items: center;
