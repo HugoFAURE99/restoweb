@@ -15,6 +15,7 @@
     <div class="page">
         <?php
         //Display 4 more ordered products
+        echo "<h2>Produits les plus commandés</h2>";
             echo "<div class='product_list_container'>";
             //Display a line of 4 products
             for ($i = 0; $i < 4; $i++) {
@@ -32,10 +33,10 @@
         <?php
         //Display of all products
             //Display of j lines of 4 products
+            echo "<h2>Tous les produits</h2>";
             for ($j = 0; $j < 3; $j++) {
 
                 echo "<div class='product_list_container'>";
-
                 //Display a line of 4 products
                 for ($i = 0; $i < 4; $i++) {
                     echo "<a href='features/produit/produit.php?id=$i' class='product_card_link'>";
