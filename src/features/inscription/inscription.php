@@ -8,10 +8,10 @@
     <title>Resto Web</title>
 </head>
 <body>
+    
     <?php
     include "../../components/navBar.php";
     ?>
-
     <div class="page">
         <div class="inscription_container">
             <h1>Inscription</h1>
