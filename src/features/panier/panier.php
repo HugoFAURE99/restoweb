@@ -63,6 +63,11 @@
                 $total = 0;
                     echo " <h3> Total TTC: " . $total . " $</h3>";
                 ?>
+                <div class='check_box_container'>
+                    <input type="checkbox" name="check" value="true">
+                    <label for="check">à emporter ?</label>
+                </div>
+                
             </div>
             <a href="../payer/payer.php">Confirmer</a> 
         </div>
