@@ -22,6 +22,8 @@
                         echo "<div class='product_line'>";
                         echo "<div class='product_card'>
                                 <h2>Produit $i</h2>
+                                <p>Quantité: </p>
+                                <input type='number' min='0' max='100'>
                             </div>";
                         echo "<button class='delete_product'>X</button>";
                         echo "</div>";
@@ -29,6 +31,8 @@
                     }
                 ?>
             </div>
+            <a href=<?php $_SERVER['PHP_SELF']; ?>>Valider les changements</a>
+
         </div>
         <div class="cart_container">
             <h1>Total</h1>
@@ -60,7 +64,7 @@
                     echo " <h3> Total TTC: " . $total . " $</h3>";
                 ?>
             </div>
-            <a href="../payer/payer.php">Confirmer</a>     
+            <a href="../payer/payer.php">Confirmer</a> 
         </div>
 
     </div>
