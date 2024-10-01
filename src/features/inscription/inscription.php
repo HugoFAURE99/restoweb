@@ -15,7 +15,7 @@
     <div class="page">
         <div class="inscription_container">
             <h1>Inscription</h1>
-            <form action="../connection/index.php" method="post">
+            <form action="../connection/connection.php" method="post">
                 <input type="text" name="login" placeholder="Login">
                 <input type="text" name="mail" placeholder="Mail">
                 <input type="password" name="password" placeholder="Password">
