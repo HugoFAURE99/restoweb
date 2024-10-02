@@ -10,7 +10,7 @@
 </head>
 <body>
     <?php
-    include "../../components/navBar.php";
+    include "../../components/navBar/navBar.php";
     ?>
 
 

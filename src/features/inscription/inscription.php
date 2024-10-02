@@ -10,7 +10,7 @@
 <body>
     
     <?php
-    include "../../components/navBar.php";
+    include "../../components/navBar/navBar.php";
     ?>
     <div class="page">
         <div class="inscription_container">

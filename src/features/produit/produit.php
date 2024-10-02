@@ -11,7 +11,7 @@
 </head>
 <body>
 
-    <?php include "../../components/navBar.php"; ?>
+    <?php include "../../components/navbar/navBar.php"; ?>
 
     <div class="page">
         <div class="product_container">

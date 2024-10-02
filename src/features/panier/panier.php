@@ -10,8 +10,8 @@
 </head>
 <body>
 <?php
-    include "../../components/navBar.php";
-    ?>
+    include "../../components/navBar/navBar.php";
+?>
     <div class="page">
         <div class="cart_container">
             <h1>Résumé de la commande</h1>
