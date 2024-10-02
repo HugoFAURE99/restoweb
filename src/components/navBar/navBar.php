@@ -1,5 +1,5 @@
 <?php
-echo "<link rel='stylesheet' href='/projets/RestoWeb/restoweb/src/components/navBar.css'>";
+echo "<link rel='stylesheet' href='/projets/RestoWeb/restoweb/src/components/navBar/navBar.css'>";
 
 //Table that contains the navigation bar buttons info
 $navBarElements = array(
