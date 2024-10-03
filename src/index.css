@@ -3,6 +3,7 @@
 .page {
     min-height: 100%;
     width: 100%;
+    padding: 1.2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -62,5 +63,9 @@ hr {
 
 .product_card_link {
     text-decoration: none;
+}
+
+p {
+    color: slategray;
 }
 
