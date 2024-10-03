@@ -6,8 +6,7 @@ include "../../functions/add_user_bd";
 $submit = isset($_POST['submit']);
 
 if ($submit){
-
- db_add_user();
+    db_add_user();
 }
 
 
@@ -31,7 +30,7 @@ if ($submit){
     <div class="page">
         <div class="inscription_container">
             <h1>Inscription</h1>
-            <form action="../connection/connection.php" method="post">
+            <form action="" method="post">
                 <input type="text" name="login" placeholder="loginUtil", required="required">
                 <input type="text" name="mail" placeholder="mailUtil" ,required="required">
                 <input type="password" name="password" placeholder="pwd", required="required">
