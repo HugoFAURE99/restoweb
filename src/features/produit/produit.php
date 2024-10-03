@@ -1,3 +1,15 @@
+<?php
+
+include "../../functions/connect_db.php";
+include "../../functions/get_product.php";
+
+// No need to connect to db because db_connect already call in each functions that send db request
+
+$id = $_GET['id']; // Get the id of the product in URL
+$product = isset($id) ? get_product($id) : null; // Get the product with its id
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -22,10 +34,9 @@
 
             <!-- Colonne détails du produit -->
             <div class="product_details">
-                <h1>Nom du produit</h1>
-                <p class="product_description">
-                    Voici une description du produit qui explique ses caractéristiques et ses avantages.(10 max)
-                </p>
+                <h1><?php echo $product['libProduit']; ?></h1>
+                <p>Prix/Unité : <?php echo $product['prixProHT']; ?> $</p>
+                
 
                 <!-- Sélecteur de quantité -->
                 <form action="../../index.php" class='form_quantity'>
