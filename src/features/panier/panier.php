@@ -1,3 +1,23 @@
+<?php
+session_start();
+
+include "../../components/fonction_bd";
+    
+if (!isset($_SESSION['user'])) {
+        header("Location: ../../index.php");
+}
+
+$sql1 = "Select idproduit, qteLigne from ligneCommandes, Commande, Utilisateur
+        Where ligneCommandes.idcom = Commande.idCom
+        and ligneCommandes.idProduit = Commande.idCom
+        And Commande.idutil = Utilisateur.idutil 
+        And Utilisateur.idutil = :idutil";
+$sth = $conn->prepare($sql1);
+$sth->bindParam(':idutil', $_SESSION['user']);
+$sth->execute();
+$user_info = $sth->fetch(PDO::FETCH_ASSOC);
+
+?>
 
 <!DOCTYPE html>
 <html lang="fr">
