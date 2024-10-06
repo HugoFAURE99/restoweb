@@ -6,14 +6,14 @@ include "../../functions/add_user_bd.php";
 $submit = isset($_POST['submit']);
 
 if ($submit){
-    $loginUtil = $_POST['login'];
+    $loginUtil = $_POST['loginUtil'];
     $mail = $_POST['mail'];
     $pwd = $_POST['pwd'];
     $pwd_check = $_POST['pwd_check'];
 
     // Vérifie que les mots de passe correspondent avant d'ajouter l'utilisateur
-    if ($password === $password_check) {
-        add_user_bd($loginUtil, $mail, $pwd);
+    if ($pwd === $pwd_check) {
+        add_user_bd();
         echo "Inscription réussie !";
     } else {
         echo "Les mots de passe ne correspondent pas.";
@@ -45,7 +45,7 @@ if ($submit){
             <h1>Inscription</h1>
             <form action="" method="post">
                 <input type="text" name="login" placeholder="loginUtil", required="required">
-                <input type="text" name="mail" placeholder="mailUtil" ,required="required">
+                <input type="text" name="mail" placeholder="mail" ,required="required">
                 <input type="password" name="password" placeholder="pwd", required="required">
 		        <input type="password" name="password_check" placeholder="pwd_check", required="required">
                 <input type="submit" name="submit" value="S'inscrire">
