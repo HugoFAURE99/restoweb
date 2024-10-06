@@ -1,6 +1,6 @@
 <?php
 
-function  
+function connexion_bd(){
 
 $dsn = 'mysql:host=localhost;dbname=appfaq';  // contient le nom du serveur et de la base
 $user = 'root';
@@ -12,6 +12,8 @@ try {
   die("Erreur lors de la connexion SQL : " . $ex->getMessage());
 }
 return $dbh;
+
+}
 
 
 ?>

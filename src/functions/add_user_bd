@@ -1,10 +1,12 @@
 <?php 
+include "../functions/connection_db.php";
+
 function db_add_user()
 { 
   //TRUE SI USER CREE OU RESTE FALSE SI PAS CREE
   $_GET['userUtil_cree'] = FALSE;
   //CONNECTION A LA BDD
-  $dbh = db_connect();
+  $dbh = connection_db();
   //CREATION DES VARIABLES QUI CONTIENNENT LES DONNEES SAISIES DANS LE FORM
   $idUser = "NULL";
   $loginUtil = isset($_POST['loginUtil']) ? $_POST['loginUtil'] : "";
@@ -14,7 +16,7 @@ function db_add_user()
 
   //REQUETE POUR VOIR SI PSEUDO DEJA DANS LA BDD
 
-  $sql1 = "select loginUtil from user where pseudo =:loginUtil";
+  $sql1 = "select loginUtil from utilisateur where pseudo =:loginUtil";
   try {
     $sth = $dbh->prepare($sql1);
     $sth->execute(array(':loginUtil' => $loginUtil));
@@ -24,7 +26,7 @@ function db_add_user()
   }
 
   //REQUETE POUR VOIR SI MAIL DEJA DANS LA BDD
-  $sql2 = "select mail from user where mail =:mail";
+  $sql2 = "select mail from utilisateur where mail =:mail";
   try {
     $sth = $dbh->prepare($sql2);
     $sth->execute(array(':mail' => $mail));
@@ -55,7 +57,7 @@ function db_add_user()
   else {
 
     //REQUETES QUI CONTIENT LA REQUETES SQL D'INSERTION DE L'USER
-    $sql = "insert into user values (:idUtil,:loginUtil,:pwd,:mail)";
+    $sql = "insert into utilisateur values (:idUtil,:loginUtil,:pwd,:mail)";
 
     //HACHAGE DU pwd AVANT DE LE STOCKER
     $pwd = password_hash($_POST['pwd'], PASSWORD_DEFAULT);
