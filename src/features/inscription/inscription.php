@@ -45,7 +45,8 @@ if ($submit){
                 <input type="submit" name="submit" value="S'inscrire">
             </form>
 
-            <?php 
+            <?php
+            // Display error message if form have been submitted and error message were returned by add_user function
             if ($submit && isset($error_message)){
                 foreach ($error_message as $message) {
                     echo "<p class='form_error_message'>$message</p>";
