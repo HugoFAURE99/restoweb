@@ -4,7 +4,7 @@ include "../../functions/connection_db.php";
 include "../../functions/login_user_db.php";
 
 // Initialisation de variables pour les messages d'erreur
-$error_message = "";
+$error_message = null;
 $submit = isset($_POST['submit']);
 
 if ($submit) {
@@ -56,8 +56,8 @@ if ($submit) {
 
             <!-- Affichage du message d'erreur si la connexion échoue -->
             <?php
-            if (!empty($error_message)) {
-                echo "<p style='color:red;'>$error_message</p>";
+            if ($error_message) {
+                echo "<p class='form_error_message'>$error_message</p>";
             }
             ?>
         </div>

@@ -18,4 +18,8 @@ body {
     
 }
 
+.form_error_message{
+    color:red;
+}
+
 /* Maybe add 'display: flex' to the div to set div to display flex a default settings */

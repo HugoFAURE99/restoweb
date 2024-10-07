@@ -12,6 +12,7 @@ function add_user_db()
   $pwd = isset($_POST['pwd']) ? $_POST['pwd'] : "";
   $pwd_check = isset($_POST['pwd_check']) ? $_POST['pwd_check'] : "";
   $mail = isset($_POST['mail']) ? $_POST['mail'] : "";
+  $error_message = [];
 
   //REQUETE POUR VOIR SI PSEUDO DEJA DANS LA BDD
 
@@ -39,17 +40,17 @@ function add_user_db()
 
     //CAS OU LES 2 pwd SAISIS NE CORRESPONDENT PAS
     if ($pwd != $pwd_check) {
-      echo "<p>Les 2 mots de passe de correspondent pas !</p>";
+      array_push($error_message, "Les mots de passe ne correspondent pas !");
     }
 
     //CAS PSEUDO DEJA UTILISE
     if (count($loginUtil_bdd) > 0) {
-      echo "<p>Ce pseudo est déja utilisé !</p>";
+      array_push($error_message, "Ce pseudo est déja utilisé !");
     }
 
     //CAS MAIL DEJA UTILISE
     if (count($mail_bdd) > 0) {
-      echo "<p>Ce mail est déja utilisé !</p>";//<p class='message_erreur'>Ce mail est déja utilisé !</p>";
+      array_push($error_message, "Ce mail est déja utilisé !");
     }
   }
   //DANS LES AUTRES CAS ON PEUT AJOUTER L'USER A LA BDD
@@ -81,6 +82,8 @@ function add_user_db()
     header("Refresh: 4; ../connection/connection.php" ); // recharge la page aprés 5 sec et renvoie vers la page de connection (/!\ ATTENTION URL marche quue si cette fonction est include dans inscription .php)
 
   }
+
+  return $error_message;
 }
 
 ?>

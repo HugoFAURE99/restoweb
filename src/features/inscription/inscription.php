@@ -13,7 +13,7 @@ if ($submit){
     $pwd_check = $_POST['pwd_check'];
 
     //rejouter execute si tous les isset sont ok
-    add_user_db();
+    $error_message=add_user_db();
 }
 
 
@@ -38,12 +38,20 @@ if ($submit){
         <div class="inscription_container">
             <h1>Inscription</h1>
             <form action=<?php echo $_SERVER['PHP_SELF']; ?> method="post">
-                <input type="text" name="loginUtil" placeholder="loginUtil", required="required">
-                <input type="text" name="mail" placeholder="mail" ,required="required">
-                <input type="password" name="pwd" placeholder="pwd", required="required">
-		        <input type="password" name="pwd_check" placeholder="pwd_check", required="required">
+                <input type="text" name="loginUtil" placeholder="Pseudo", required="required">
+                <input type="text" name="mail" placeholder="Mail" ,required="required">
+                <input type="password" name="pwd" placeholder="Mot de passe", required="required">
+		        <input type="password" name="pwd_check" placeholder="Verification du mot de passe", required="required">
                 <input type="submit" name="submit" value="S'inscrire">
             </form>
+
+            <?php 
+            if ($submit){
+                foreach ($error_message as $message) {
+                    echo "<p class='form_error_message'>$message</p>";
+                }
+            }
+            ?>
         </div>
     </div>
 </body>
