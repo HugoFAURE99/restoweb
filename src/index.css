@@ -3,6 +3,7 @@
 .page {
     min-height: 100%;
     width: 100%;
+    padding: 1.2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,8 +22,9 @@
 
 .product_card {
     width: 15rem;
-    height: 8rem;
+    min-height: 12rem;
     display: flex;
+    text-align: center;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -46,8 +48,6 @@
 
 }
 
-.pro
-
 .product_card p {
     font-size: 1rem;
     color: rgb(0, 0, 0);
@@ -62,5 +62,9 @@ hr {
 
 .product_card_link {
     text-decoration: none;
+}
+
+p {
+    color: slategray;
 }
 
