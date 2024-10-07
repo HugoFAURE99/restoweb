@@ -15,7 +15,7 @@ function add_user_db()
 
   //REQUETE POUR VOIR SI PSEUDO DEJA DANS LA BDD
 
-  $sql1 = "select loginUtil from utilisateur where pseudo =:loginUtil";
+  $sql1 = "select loginUtil from utilisateur where loginUtil =:loginUtil";
   try {
     $sth = $dbh->prepare($sql1);
     $sth->execute(array(':loginUtil' => $loginUtil));
@@ -25,7 +25,7 @@ function add_user_db()
   }
 
   //REQUETE POUR VOIR SI MAIL DEJA DANS LA BDD
-  $sql2 = "select mail from utilisateur where mail =:mail";
+  $sql2 = "select mailUtil from utilisateur where mailUtil =:mail";
   try {
     $sth = $dbh->prepare($sql2);
     $sth->execute(array(':mail' => $mail));
@@ -35,7 +35,7 @@ function add_user_db()
   }
 
   //CHECK DES ERREURS DE SAISIS POUR EVITER DES INSERTIONS NON-CONFORME(S)
-  if ($pwd != $pwd_check || count($pwd_bdd) > 0 || count($mail_bdd) > 0) {
+  if ($pwd != $pwd_check || count($loginUtil_bdd) > 0 || count($mail_bdd) > 0) {
 
     //CAS OU LES 2 pwd SAISIS NE CORRESPONDENT PAS
     if ($pwd != $pwd_check) {
@@ -56,7 +56,7 @@ function add_user_db()
   else {
 
     //REQUETES QUI CONTIENT LA REQUETES SQL D'INSERTION DE L'USER
-    $sql = "insert into utilisateur values (:idUtil,:loginUtil,:pwd,:mail)";
+    $sql = "insert into utilisateur ( loginUtil,mailUtil,pwdUtil) values (:loginUtil, :mail, :pwd)";
 
     //HACHAGE DU pwd AVANT DE LE STOCKER
     $pwd = password_hash($_POST['pwd'], PASSWORD_DEFAULT);
@@ -78,11 +78,9 @@ function add_user_db()
     echo "<p>Redirection vers login dans 4 sec !</p>";
 
 
-    header("Refresh: 4; connection.php" ); // recharge la page aprés 5 sec et renvoie vers la page login.php
+    header("Refresh: 4; ../connection/connection.php" ); // recharge la page aprés 5 sec et renvoie vers la page de connection (/!\ ATTENTION URL marche quue si cette fonction est include dans inscription .php)
 
   }
-
-  echo "<p>Compte créé avec succés !</p>";
 }
 
 ?>

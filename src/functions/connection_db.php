@@ -2,7 +2,7 @@
 
 function connection_db(){
 
-$dsn = 'mysql:host=localhost;dbname=appfaq';  // contient le nom du serveur et de la base
+$dsn = 'mysql:host=localhost;dbname=restoweb';  // contient le nom du serveur et de la base
 $user = 'root';
 $password = '';
 try {
