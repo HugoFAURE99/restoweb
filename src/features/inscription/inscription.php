@@ -46,7 +46,7 @@ if ($submit){
             </form>
 
             <?php 
-            if ($submit){
+            if ($submit && isset($error_message)){
                 foreach ($error_message as $message) {
                     echo "<p class='form_error_message'>$message</p>";
                 }

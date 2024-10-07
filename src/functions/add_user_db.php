@@ -12,7 +12,7 @@ function add_user_db()
   $pwd = isset($_POST['pwd']) ? $_POST['pwd'] : "";
   $pwd_check = isset($_POST['pwd_check']) ? $_POST['pwd_check'] : "";
   $mail = isset($_POST['mail']) ? $_POST['mail'] : "";
-  $error_message = [];
+  $error_message = [null];
 
   //REQUETE POUR VOIR SI PSEUDO DEJA DANS LA BDD
 
