@@ -44,7 +44,7 @@ function add_user_db()
 
     //CAS PSEUDO DEJA UTILISE
     if (count($loginUtil_bdd) > 0) {
-      echo "<p>Ce pseudo déja utilisé !</p>";
+      echo "<p>Ce pseudo est déja utilisé !</p>";
     }
 
     //CAS MAIL DEJA UTILISE

@@ -37,7 +37,7 @@ if ($submit){
     <div class="page">
         <div class="inscription_container">
             <h1>Inscription</h1>
-            <form action="" method="post">
+            <form action=<?php echo $_SERVER['PHP_SELF']; ?> method="post">
                 <input type="text" name="loginUtil" placeholder="loginUtil", required="required">
                 <input type="text" name="mail" placeholder="mail" ,required="required">
                 <input type="password" name="pwd" placeholder="pwd", required="required">
