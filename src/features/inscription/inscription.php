@@ -1,3 +1,25 @@
+<?php
+include "../../functions/connection_db.php";
+include "../../functions/add_user_db.php";
+
+
+$submit = isset($_POST['submit']);
+
+if ($submit){
+    //Rajouter des isset avec les erreurs liées
+    $loginUtil = $_POST['loginUtil'];
+    $mail = $_POST['mail'];
+    $pwd = $_POST['pwd'];
+    $pwd_check = $_POST['pwd_check'];
+
+    //rejouter execute si tous les isset sont ok
+    $error_message=add_user_db();
+}
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -15,13 +37,22 @@
     <div class="page">
         <div class="inscription_container">
             <h1>Inscription</h1>
-            <form action="../connection/connection.php" method="post">
-                <input type="text" name="login" placeholder="Login">
-                <input type="text" name="mail" placeholder="Mail">
-                <input type="password" name="password" placeholder="Password">
-		        <input type="password" name="password" placeholder="Password">
-                <input type="submit" value="S'inscrire">
+            <form action=<?php echo $_SERVER['PHP_SELF']; ?> method="post">
+                <input type="text" name="loginUtil" placeholder="Pseudo", required="required">
+                <input type="text" name="mail" placeholder="Mail" ,required="required">
+                <input type="password" name="pwd" placeholder="Mot de passe", required="required">
+		        <input type="password" name="pwd_check" placeholder="Verification du mot de passe", required="required">
+                <input type="submit" name="submit" value="S'inscrire">
             </form>
+
+            <?php
+            // Display error message if form have been submitted and error message were returned by add_user function
+            if ($submit && isset($error_message)){
+                foreach ($error_message as $message) {
+                    echo "<p class='form_error_message'>$message</p>";
+                }
+            }
+            ?>
         </div>
     </div>
 </body>
