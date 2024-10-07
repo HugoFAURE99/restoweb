@@ -1,6 +1,6 @@
 <?php
-include "../../functions/connexion_bd.php";
-include "../../functions/add_user_bd.php";
+include "../../functions/connection_db.php";
+include "../../functions/add_user_db.php";
 
 
 $submit = isset($_POST['submit']);
@@ -13,7 +13,7 @@ if ($submit){
 
     // Vérifie que les mots de passe correspondent avant d'ajouter l'utilisateur
     if ($pwd === $pwd_check) {
-        add_user_bd();
+        add_user_db();
         echo "Inscription réussie !";
     } else {
         echo "Les mots de passe ne correspondent pas.";

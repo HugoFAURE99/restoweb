@@ -1,7 +1,6 @@
 <?php 
-include "../functions/connection_db.php";
 
-function db_add_user()
+function add_user_db()
 { 
   //TRUE SI USER CREE OU RESTE FALSE SI PAS CREE
   $_GET['userUtil_cree'] = FALSE;
