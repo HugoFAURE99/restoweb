@@ -1,3 +1,35 @@
+<?php
+// Inclure les fichiers de connexion et de vérification des utilisateurs
+include "../../functions/connection_db.php";
+include "../../functions/login_user_db.php";
+
+// Initialisation de variables pour les messages d'erreur
+$error_message = "";
+$submit = isset($_POST['submit']);
+
+if ($submit) {
+    $login = isset($_POST['login']) ? $_POST['login'] : "";
+    $password = isset($_POST['password']) ? $_POST['password'] : "";
+
+    // Vérification que les champs ne sont pas vides
+    if (!empty($login) && !empty($password)) {
+        // Appeler la fonction pour vérifier l'utilisateur dans la base de données
+        if (login_user_db($login, $password)) {
+            // Si l'utilisateur est trouvé et le mot de passe est correct
+            header("Location: ../../index.php"); // Redirection vers la page d'accueil
+            exit();
+        } else {
+            // Message d'erreur si le login ou mot de passe est incorrect
+            $error_message = "Login ou mot de passe incorrect.";
+        }
+    } else {
+        // Message d'erreur si les champs sont vides
+        $error_message = "Veuillez remplir tous les champs.";
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -13,15 +45,21 @@
     include "../../components/navBar/navBar.php";
     ?>
 
-
     <div class="page">
         <div class="connect_container">
             <h1>Connexion</h1>
-            <form action="../../index.php" method="post">
-                <input type="text" name="login" placeholder="Login">
-                <input type="password" name="password" placeholder="Password">
-                <input type="submit" value="Connexion">
+            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                <input type="text" name="login" placeholder="Login" required="required">
+                <input type="password" name="password" placeholder="Password" required="required">
+                <input type="submit" name="submit" value="Connexion">
             </form>
+
+            <!-- Affichage du message d'erreur si la connexion échoue -->
+            <?php
+            if (!empty($error_message)) {
+                echo "<p style='color:red;'>$error_message</p>";
+            }
+            ?>
         </div>
     </div>
     
