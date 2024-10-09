@@ -4,12 +4,19 @@ echo "<link rel='stylesheet' href='/projets/RestoWeb/restoweb/src/components/nav
 //Table that contains the navigation bar buttons info
 $navBarElements = array(
     array("label" => "Accueil", "link" => "/projets/RestoWeb/restoweb/src/index.php"),
-    array("label" => "Connexion", "link" => "/projets/RestoWeb/restoweb/src/features/connection/connection.php"),
-    array("label" => "Inscription", "link" => "/projets/RestoWeb/restoweb/src/features/inscription/inscription.php"),
-    array("label" => "Deconnexion", "link" => "/projets/RestoWeb/restoweb/src/features/deconnection/deconnection.php"),
     array("label" => "Panier", "link" => "/projets/RestoWeb/restoweb/src/features/panier/panier.php"),
     //Add array here that contains the navigation bar buttons info to add a button to the navigation bar 
 );
+
+if (!isset($_SESSION['login'])) {
+    // Utilisateur non connecté, on affiche Connexion et Inscription
+    $navBarElements[] = array("label" => "Connexion", "link" => "/projets/RestoWeb/restoweb/src/features/connection/connection.php");
+    $navBarElements[] = array("label" => "Inscription", "link" => "/projets/RestoWeb/restoweb/src/features/inscription/inscription.php");
+} else {
+    // Utilisateur connecté, on affiche Déconnexion
+    $navBarElements[] = array("label" => "Deconnexion", "link" => "/projets/RestoWeb/restoweb/src/features/deconnection/deconnection.php");
+}
+
 
 //Get the current page URL 
 $currentPageURL = $_SERVER['PHP_SELF'];
