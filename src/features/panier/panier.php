@@ -4,6 +4,16 @@ session_start();
 if (!isset($_SESSION['login'])) {
     header("Location: ../connection/connection.php");
 }
+
+$cart=$_SESSION["cart"];
+
+if ($_SESSION['typeCom']=='Sur place'){
+    $tva=$prixproHT*(5.5);
+}else{
+    $tva=$prixproHT*(10);
+}
+
+include "restoweb/src/functions/get_product_panier.php";
 ?>
 
 <!DOCTYPE html>
