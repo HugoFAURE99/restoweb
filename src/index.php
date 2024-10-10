@@ -8,6 +8,8 @@ session_start();
 
 $products = get_products(); // Get all products 
 $popular_products = get_popular_products(); // Get 4 most ordered products
+
+print_r($_SESSION['cart']);
 ?>
 
 <!DOCTYPE html>

@@ -4,8 +4,10 @@ session_start();
 if (!isset($_SESSION['login'])) {
     header("Location: ../connection/connection.php");
 }
-
+//Correct essaye de foreach sur le talbeau pour recup chaque idProduct et quantity
 $cart=$_SESSION["cart"];
+print_r($_SESSION['cart']);
+
 
 if ($_SESSION['typeCom']=='Sur place'){
     $tva=$prixproHT*(5.5);
@@ -13,7 +15,6 @@ if ($_SESSION['typeCom']=='Sur place'){
     $tva=$prixproHT*(10);
 }
 
-include "restoweb/src/functions/get_product_panier.php";
 ?>
 
 <!DOCTYPE html>
