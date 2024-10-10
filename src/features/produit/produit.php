@@ -12,8 +12,19 @@ if (!isset($_SESSION['login'])) {
 // No need to connect to db because db_connect already call in each functions that send db request
 
 $id = $_GET['id']; // Get the id of the product in URL
-$product = isset($id) ? get_product($id) : null; // Get the product with its id
+$product = isset($id) ? get_product($id) : null; // Get the product with its idate
+$submit = isset($_POST['submit']);
+//Add productId and Quatity to $_SESSION in an array that will store the cart of the user
+if ($submit) {
+    $cart[] = array("productId" => $id, "quantity" => $_POST['quantity']);
+    $_SESSION['cart'][] = $cart;
+
+    header("Location: ../../index.php");
+}
+
+
 ?>
+
 
 
 <!DOCTYPE html>
@@ -45,10 +56,11 @@ $product = isset($id) ? get_product($id) : null; // Get the product with its id
                 
 
                 <!-- Sélecteur de quantité -->
-                <form action="../../index.php" class='form_quantity'>
-                        <input type="number" id="quantity" value="1" min="1" max="10">
+                <form action="<?php $_SERVER ["PHP_SELF"] ?>" method="post" class='form_quantity'>
+                        <input type="number" name='id' value='<?php $id ?>' hidden>
+                        <input type="number" name='quantity' id='quantity' value="1" min="1" max="10">
                         <!-- Bouton Ajouter au panier -->
-                        <input type="submit" value="Ajouter au panier" class="add_to_cart_btn">
+                        <input type="submit" name="submit" value="Ajouter" class="add_to_cart_btn">
                 </form>
             </div>
         </div>
