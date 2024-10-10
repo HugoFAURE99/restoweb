@@ -22,7 +22,9 @@ if (!isset($_SESSION['login'])) {
 $currentPageURL = $_SERVER['PHP_SELF'];
 
 //Display the table and add class "isActive" to <li> if the current page URL is the same as the link
+echo "<div class='navBar_left'>";
 echo "<ul>";
+
 
 echo "<li id='app_title'>Resto Web</li>";
 
@@ -34,6 +36,20 @@ foreach ($navBarElements as $item) {
     echo "<li>";
     echo "<a href='" . $item["link"] . "' class='" . $activeClass . "'>" . $item["label"] . "</a>";
 }
+
 echo "</ul>";
+echo "</div>";
+
+if (isset($_SESSION['login'])) {
+    echo "<div class='navBar_right'>";
+    echo "<p> Connecté : " . $_SESSION['login'] . "</p>";
+    echo "</div>";
+}else{
+    echo "<div class='navBar_right'>";
+    echo "<p> Non connecté </p>";
+    echo "</div>";
+}
+
+
 
 ?>
