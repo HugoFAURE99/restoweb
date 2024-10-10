@@ -5,7 +5,7 @@ function add_user_db()
   //TRUE SI USER CREE OU RESTE FALSE SI PAS CREE
   $_GET['userUtil_cree'] = FALSE;
   //CONNECTION A LA BDD
-  $dbh = connection_db();
+  $dbh = connect_db();
   //CREATION DES VARIABLES QUI CONTIENNENT LES DONNEES SAISIES DANS LE FORM
   $idUser = "NULL";
   $loginUtil = isset($_POST['loginUtil']) ? $_POST['loginUtil'] : "";

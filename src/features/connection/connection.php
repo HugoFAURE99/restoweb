@@ -1,7 +1,9 @@
 <?php
 // Inclure les fichiers de connexion et de vérification des utilisateurs
-include "../../functions/connection_db.php";
+include "../../functions/connect_db.php";
 include "../../functions/login_user_db.php";
+
+session_start();
 
 // Initialisation de variables pour les messages d'erreur
 $error_message = null;
@@ -43,6 +45,10 @@ if ($submit) {
 <body>
     <?php
     include "../../components/navBar/navBar.php";
+    include "../../functions/connection_check.php";
+
+    // Check if user is already connected and initialize session
+    connection_check();
     ?>
 
     <div class="page">

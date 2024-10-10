@@ -1,6 +1,11 @@
 <?php
-include "../../functions/connection_db.php";
+include "../../functions/connect_db.php";
 include "../../functions/add_user_db.php";
+include "../../functions/connection_check.php";
+
+session_start();
+//Check if user is connected
+connection_check(); // If user is connected, redirect to index.php
 
 
 $submit = isset($_POST['submit']);

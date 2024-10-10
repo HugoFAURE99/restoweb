@@ -3,6 +3,7 @@ include "functions/connect_db.php";
 include "functions/get_products.php";
 include "functions/get_popular_products.php";
 
+session_start();
 // No need to connect to db because db_connect already call in each functions that send db request
 
 $products = get_products(); // Get all products 

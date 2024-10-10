@@ -3,6 +3,12 @@
 include "../../functions/connect_db.php";
 include "../../functions/get_product.php";
 
+session_start();
+
+if (!isset($_SESSION['login'])) {
+    header("Location: ../connection/connection.php");
+}
+
 // No need to connect to db because db_connect already call in each functions that send db request
 
 $id = $_GET['id']; // Get the id of the product in URL
