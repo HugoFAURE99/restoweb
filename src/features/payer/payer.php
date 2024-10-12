@@ -46,7 +46,7 @@ if ($submit) {
     <div class="page">
         <div class="payment_container">
             <h1>Paiement de votre commande</h1>
-            <form action="" method="post">
+            <form action="../confirmation/confirmation.php" method="post">
    
                 <input type="hidden" name="idCom" value="4">
                 
