@@ -1,19 +1,42 @@
 <?php
 session_start();
 
+include "../../functions/connect_db.php";
+include "../../functions/get_products.php";
+
+//--------------------------------definition des vaziables-------------------------------------
+$typeCom = isset($_POST['typeCom']) ? $_POST['typeCom'] : null; 
+
 if (!isset($_SESSION['login'])) {
     header("Location: ../connection/connection.php");
 }
-//Correct essaye de foreach sur le talbeau pour recup chaque idProduct et quantity
-$cart=$_SESSION["cart"];
+
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = array(); //initialise le tableau
+}
+
+
+$typeCom = isset($_POST['typeCom']) ? $_POST['typeCom'] : null;
+$prixproHT = isset($_POST['prixproHT']) ? $_POST['prixproHT'] : 0;
+
+$products = get_products(); //Prend tous les produits
+
+
+$id = $_SESSION['array']['id'];
+
+//-----------------------------------------------------------------------------------------------
+
 print_r($_SESSION['cart']);
 
 
+/*
+// Code pour appliquer la tva sur le prix
 if ($_SESSION['typeCom']=='Sur place'){
     $tva=$prixproHT*(5.5);
 }else{
     $tva=$prixproHT*(10);
 }
+    */
 
 ?>
 
@@ -36,20 +59,22 @@ if ($_SESSION['typeCom']=='Sur place'){
             <div class='product_list_container'>
                 <?php
                     // Affichage d'une ligne de produits
-                    for ($i = 0; $i < 25; $i++) {
-                        echo "<div class='product_line'>";
-                        echo "<div class='product_card'>
-                                <h2>Produit $i</h2>
-                                <p>Quantité: </p>
-                                <input type='number' min='0' max='100'>
-                            </div>";
-                        echo "<button class='delete_product'>X</button>";
-                        echo "</div>";
-
+                    foreach ($products as $product) { 
+                        if ($product['idProduit'] == $_SESSION['array']['id']) {
+                            echo "<div class='product_line'>";
+                            echo "<div class='product_card'>
+                                    <h2>" . $product['libproduit'] . "</h2>
+                                    <p>Quantité: </p>
+                                    <input type='number' min='0' max='100' value='" . $product['quantite'] . "'> 
+                                </div>";
+                            echo "<button class='delete_product'>X</button>";
+                            echo "</div>";
+                        }
                     }
                 ?>
             </div>
-            <a href=<?php $_SERVER['PHP_SELF']; ?>>Valider les changements</a>
+            <a >Valider les changements</a>
+             
 
         </div>
         <div class="cart_container">

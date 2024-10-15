@@ -9,6 +9,10 @@ session_start();
 $products = get_products(); // Get all products 
 $popular_products = get_popular_products(); // Get 4 most ordered products
 
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = array(); //initialise le tableau
+}
+
 print_r($_SESSION['cart']);
 ?>
 
