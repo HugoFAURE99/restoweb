@@ -6,7 +6,7 @@ function login_user_db($login, $password)
     $dbh = connect_db();
 
     // Requête pour vérifier si le login existe dans la base de données
-    $sql = "SELECT loginUtil, pwdUtil FROM utilisateur WHERE loginUtil = :loginUtil";
+    $sql = "SELECT * FROM utilisateur WHERE loginUtil = :loginUtil";
     try {
         $sth = $dbh->prepare($sql);
         $sth->execute(array(':loginUtil' => $login));
@@ -21,6 +21,7 @@ function login_user_db($login, $password)
         if (password_verify($password, $user['pwdUtil'])) {
             // Le mot de passe est correct, l'utilisateur peut se connecter
             $_SESSION['login'] = $user['loginUtil'];
+            $_SESSION['idUtil'] = $user['idUtil'];
             return true;
         } else {
             // Mot de passe incorrect

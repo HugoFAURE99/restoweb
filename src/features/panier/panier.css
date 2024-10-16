@@ -86,7 +86,7 @@
 }
 
 table {
-    width: 90%;
+    width: 100%;
     border-collapse: collapse;
 }
 
@@ -109,4 +109,8 @@ hr {
     height: 2px;
     border: none;
     background-color: slategray;
+}
+
+form{
+    width: 90%;
 }
