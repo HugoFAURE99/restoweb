@@ -47,16 +47,6 @@ header("Refresh:4; ../payer/payer.php");
 //-----------------------------------------------------------------------------------------------
 
 
-
-/*
-// Code pour appliquer la tva sur le prix
-if ($_SESSION['typeCom']=='Sur place'){
-    $tva=$prixproHT*(5.5);
-}else{
-    $tva=$prixproHT*(10);
-}
-    */
-
 ?>
 
 <!DOCTYPE html>
