@@ -10,35 +10,30 @@
 </head>
 <body>
     <?php
+    session_start(); // Démarrer la session PHP pour maintenir l'état de l'utilisateur
+
+    // Inclusion des éléments de la barre de navigation et du fichier de connexion à la base de données
     include "../../components/navBar/navBar.php";
     include "../../functions/connect_db.php";
-    // Connexion à la BDD
-    $dsn = 'mysql:host=localhost;dbname=restoweb';
-    $username = 'root';
-    $password = '';
 
-    try {
-        $pdo = new PDO($dsn, $username, $password);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch (PDOException $e) {
-        die("Erreur de connexion à la base de données : " . $e->getMessage());
-    }
+    // Connexion à la base de données
+    $dbh = connect_db(); // Connexion via PDO
 
-    // Récupérer l'ID de la commande via l'URL (GET)
-    $id_commande = isset($_GET['id_commande']) ? (int) $_GET['id_commande'] : 0;
+    // Récupération de l'ID de la commande, par exemple via un paramètre GET ou POST (ici statiquement défini pour l'exemple)
+    $id_commande = 3;
 
-    // Vérifier si l'ID de commande est valide
+    // Vérifier que l'ID de commande est bien défini et supérieur à 0
     if ($id_commande > 0) {
-        // Requête pour récupérer les détails de la commande
+        // Préparation de la requête pour récupérer les informations de la commande
         $sql = "SELECT idCom, totalComTTC FROM Commande WHERE idCom = :id_commande";
-        $stmt = $pdo->prepare($sql);
+        $stmt = $dbh->prepare($sql); 
         $stmt->bindParam(':id_commande', $id_commande, PDO::PARAM_INT);
 
-        // Exécuter la requête
+        // Exécution de la requête et récupération des résultats
         if ($stmt->execute()) {
             $commande = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            // Vérification des résultats
+            // Si des données sont retournées, on les stocke, sinon on indique qu'elles sont inconnues
             if ($commande) {
                 $numero_commande = $commande['idCom'];
                 $montant_commande = $commande['totalComTTC'];
@@ -47,8 +42,7 @@
                 $montant_commande = "inconnu";
             }
         } else {
-            // En cas d'erreur d'exécution de la requête
-            die("Erreur lors de la récupération des données.");
+            die("Problème lors de la récupération des informations de la commande.");
         }
     } else {
         $numero_commande = "inconnu";
@@ -56,16 +50,16 @@
     }
     ?>
 
-    <!-- Contenu de la page de confirmation -->
+    <!-- Contenu de la page de confirmation de commande -->
     <div class="page">
         <div class='confirmation_container'>
-            <h2>Commande confirmée!</h2>
+            <h2>Commande confirmée !</h2>
             <?php if ($numero_commande !== "inconnu") : ?>
-                <p>Votre commande N°<?php echo htmlspecialchars($numero_commande); ?> d'un montant de <?php echo htmlspecialchars($montant_commande); ?> € est confirmée.</p>
+                <p>Votre commande n°<?php echo htmlspecialchars($numero_commande); ?> d'un montant de <?php echo htmlspecialchars($montant_commande); ?> € a bien été validée.</p>
             <?php else : ?>
-                <p>Commande non trouvée.</p>
+                <p>Impossible de retrouver cette commande.</p>
             <?php endif; ?>
-            <a href="../../index.php">Retour à la page d'accueil</a>
+            <a href="../../index.php">Retour à l'accueil</a>
         </div>
     </div>
 
