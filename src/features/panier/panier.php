@@ -1,9 +1,52 @@
 <?php
 session_start();
 
+include "../../functions/connect_db.php";
+include "../../functions/get_products.php";
+include "../../functions/get_product.php";
+include "../../functions/insert_ligne_commande.php"; 
+include "../../functions/insert_commande.php";    
+
+//--------------------------------definition des vaziables-------------------------------------
+
+
 if (!isset($_SESSION['login'])) {
     header("Location: ../connection/connection.php");
 }
+
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = array(); //initialise le tableau
+}
+
+
+$cart=$_SESSION['cart'];
+$totalHT=0;
+
+$idUtil=$_SESSION['idUtil']; 
+
+
+$submit = isset($_POST['submit']);
+if ($submit){
+  if(isset($_POST['check'])){
+        $typeCom='A emporter';
+    }else{
+        $typeCom='Sur place';
+    }
+    $idCom=insert_commande($_POST['totalHT'],$typeCom,$idUtil);
+    print_r($idCom);    
+    for($i=0;$i<count($cart);$i++){
+        echo "coucou";
+        insert_ligne_commande($_POST['idPro'.$i],$_POST['qteLigne'.$i],$_POST['totalLigneHT'.$i],$idCom);
+        
+
+}
+header("Refresh:4; ../payer/payer.php");
+}
+
+
+//-----------------------------------------------------------------------------------------------
+
+
 ?>
 
 <!DOCTYPE html>
@@ -21,30 +64,12 @@ if (!isset($_SESSION['login'])) {
 ?>
     <div class="page">
         <div class="cart_container">
-            <h1>Résumé de la commande</h1>
-            <div class='product_list_container'>
-                <?php
-                    // Affichage d'une ligne de produits
-                    for ($i = 0; $i < 25; $i++) {
-                        echo "<div class='product_line'>";
-                        echo "<div class='product_card'>
-                                <h2>Produit $i</h2>
-                                <p>Quantité: </p>
-                                <input type='number' min='0' max='100'>
-                            </div>";
-                        echo "<button class='delete_product'>X</button>";
-                        echo "</div>";
-
-                    }
-                ?>
-            </div>
-            <a href=<?php $_SERVER['PHP_SELF']; ?>>Valider les changements</a>
-
-        </div>
-        <div class="cart_container">
             <h1>Total</h1>
             <div class='product_list_container'>
+                
+            <form action=<?php echo $_SERVER['PHP_SELF']; ?> method="post">
                 <?php
+                  
                    echo "<table>
                         <tr>
                             <th>Produit(s)</th>
@@ -52,23 +77,43 @@ if (!isset($_SESSION['login'])) {
                             <th>Prix</th>
                             <th>Total</th>
                         </tr>";
-                    for ($i = 0; $i < 25; $i++) {
-                        echo "<tr>
-                                <td>Produit $i</td>
-                                <td>0</td>
-                                <td>0$</td>
-                                <td>0$</td>
-                            </tr>";
-
-                    }
+                        $j=0; 
+                        foreach($cart as $products){
+                             
+                             
+                            foreach($products as $product){
+                                
+    
+                                $id=$product['productId'];
+                                $qt=$product['quantity'];
+                                $product=get_product($id);
+                                $lib=$product['libProduit'];
+                                $prix=$product['prixProHT'];
+                                $total=$prix*$qt;
+                                $totalHT+=$total;
+                                echo "<tr>
+                                <td ><input type='hidden' name='idPro" . $j . "' value='" . $id . "'>" . $lib . "</td>
+                                <td><input type='hidden' name='qteLigne" . $j . "' value='" . $qt . "'>". $qt . "</td>
+                                <td><input type='hidden' name='prixProHT" . $j . "' value='" . $prix . "'>".$prix."</td>
+                                <td><input type='hidden' name='totalLigneHT" . $j . "' value='" . $total . "'>".$total."</td>
+                                </tr>";
+                              
+                                $j++;
+                            }
+                            
+                            
+                        }
+    
+                    echo "<input type='hidden' name='totalHT' value='" . $totalHT . "'>";
                     echo "</table>";
+                
                 ?>
             </div>
             <hr>
             <div class='cart_total_container'>
                 <?php
-                $total = 0;
-                    echo " <h3> Total TTC: " . $total . " $</h3>";
+            
+                    echo " <h3> Total HT: " . $totalHT . " $</h3>";
                 ?>
                 <div class='check_box_container'>
                     <input type="checkbox" name="check" value="true">
@@ -76,7 +121,8 @@ if (!isset($_SESSION['login'])) {
                 </div>
                 
             </div>
-            <a href="../payer/payer.php">Confirmer</a> 
+            <input type="submit" name= "submit" value="Valider">
+            </form>
         </div>
 
     </div>
