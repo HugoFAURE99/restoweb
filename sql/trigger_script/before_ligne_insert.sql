@@ -1,3 +1,5 @@
+DELIMITER |
+
 CREATE TRIGGER `before_ligne_insert` BEFORE INSERT ON `lignecommandes`
  FOR EACH ROW BEGIN
     DECLARE prixHT DECIMAL(10, 2);
@@ -16,4 +18,4 @@ CREATE TRIGGER `before_ligne_insert` BEFORE INSERT ON `lignecommandes`
         SIGNAL SQLSTATE '45000' 
             SET MESSAGE_TEXT = 'Produit introuvable';
     END IF;
-END
+END |

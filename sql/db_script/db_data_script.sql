@@ -3,11 +3,7 @@
 /* Insertion of data in "Utilisateur" table */
 INSERT INTO Utilisateur (loginUtil, mailUtil, pwdUtil)
 VALUES
-('test','test@test.fr','1234'),
-('test2','test@test.com','1234'),
-('jdoe', 'jdoe@example.com', 'password123'),
-('asmith', 'asmith@example.com', 'securepwd456'),
-('mdupont', 'mdupont@example.com', 'mypassword789');
+('test','test@test.fr','$2y$10$UEkpj.YPgxRylo4rP/tOHO16DBpAsNrCSbUa1.sOkx9zqVzQZJ8L.'); /* type "test" as password if u want to login with this user */
 
 /* Insertion of data in "Produit" table */
 INSERT INTO Produit (libProduit, prixProHT)
@@ -27,10 +23,10 @@ VALUES
 INSERT INTO Commande (etatCom, totalComTTC, typeCom, dateCom, heureCom, idUtil)
 VALUES 
 ('En cours', 35.50, 'Sur place', '2024-10-03', '12:30:00', 1),
-('Livré', 20.00, 'Livraison', '2024-10-03', '13:15:00', 2),
+('Livré', 20.00, 'Livraison', '2024-10-03', '13:15:00', 1),
 ('En cours', 42.80, 'Sur place', '2024-10-02', '14:00:00', 1),
-('Annulée', 15.50, 'À emporter', '2024-10-01', '11:45:00', 3),
-('Livré', 65.00, 'Livraison', '2024-10-03', '15:30:00', 2);
+('Annulée', 15.50, 'À emporter', '2024-10-01', '11:45:00', 1),
+('Livré', 65.00, 'Livraison', '2024-10-03', '15:30:00', 1);
 
 /* Insertion of data in "ligneCommandes" table */
 INSERT INTO ligneCommandes (idCom, idProduit, qteLigne, totalLigneHT)

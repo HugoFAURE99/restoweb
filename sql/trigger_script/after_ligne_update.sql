@@ -1,3 +1,5 @@
+DELIMITER |
+
 CREATE TRIGGER `after_ligne_update` AFTER UPDATE ON `lignecommandes`
  FOR EACH ROW BEGIN
     DECLARE v_total_HT DECIMAL(10, 2);
@@ -26,4 +28,4 @@ CREATE TRIGGER `after_ligne_update` AFTER UPDATE ON `lignecommandes`
     UPDATE commande
     SET totalComTTC = v_total_TTC
     WHERE idCom = NEW.idCom;
-END
+END |
