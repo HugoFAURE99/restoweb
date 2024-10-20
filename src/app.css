@@ -22,4 +22,8 @@ body {
     color:red;
 }
 
+.form_success_message {
+    color:green;
+}
+
 /* Maybe add 'display: flex' to the div to set div to display flex a default settings */

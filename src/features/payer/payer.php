@@ -10,20 +10,22 @@ if (!isset($_SESSION['login'])) {
 $pdo = connect_db(); 
 $error_message = null;
 $submit = isset($_POST['submit']);
+$paymentState=false;
 
 if ($submit) {
-    $idCom = $_POST['idCom'];
+    $idCom = $_SESSION['idCom'];
 
     try {
         $etatCom = "Calculée";
-        $sql = "UPDATE Commande SET etatCom = :etatCom WHERE idCom = :idCom";
+        $sql = "UPDATE commande SET etatCom = :etatCom WHERE idCom = :idCom;";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
             ':etatCom' => $etatCom,
             ':idCom' => $idCom
         ]);
 
-        echo "L'état de la commande avec id $idCom a été mis à jour avec succès.";
+        $paymentState=true;
+        header("Refresh:3; ../confirmation/confirmation.php");
     } catch (PDOException $error) {
         echo "Erreur lors de la mise à jour de la commande : " . $error->getMessage();
     }
@@ -46,14 +48,17 @@ if ($submit) {
     <div class="page">
         <div class="payment_container">
             <h1>Paiement de votre commande</h1>
-            <form action="../confirmation/confirmation.php" method="post">
-   
-                <input type="hidden" name="idCom" value="4">
-                
+            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                 <input type="text" name="cb_number" placeholder="N° de CB" required="required">
                 <input type="text" name="exp_date" placeholder="Date expiration" required="required">
                 <input type="text" name="ccv" placeholder="CCV" required="required">
                 <input type="submit" name ="submit" value="Payer">
+                <?php
+                if($paymentState==true){
+                    echo "<p class='form_success_message'>Paiement effectué avec succès</p>";
+                    echo "<p class='form_success_message'>Vous allez être redirigé vers la page de confirmation de commande</p>";
+                }
+                ?>
             </form>
         </div>
     </div>

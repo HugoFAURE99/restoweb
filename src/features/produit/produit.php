@@ -2,6 +2,7 @@
 
 include "../../functions/connect_db.php";
 include "../../functions/get_product.php";
+include "../../functions/product_cart_check.php";
 
 session_start();
 
@@ -14,6 +15,12 @@ if (!isset($_SESSION['login'])) {
 $id = $_GET['id']; // Get the id of the product in URL
 $product = isset($id) ? get_product($id) : null; // Get the product with its idate
 $submit = isset($_POST['submit']);
+
+
+//Check if the product is already in the cart
+$product_cart_check = product_cart_check($_SESSION['cart'], $id);
+
+
 //Add productId and Quatity to $_SESSION in an array that will store the cart of the user
 if ($submit) {
     $cart[] = array("productId" => $id, "quantity" => $_POST['quantity']);
@@ -60,7 +67,13 @@ if ($submit) {
                         <input type="number" name='id' value='<?php $id ?>' hidden>
                         <input type="number" name='quantity' id='quantity' value="1" min="1" max="10">
                         <!-- Bouton Ajouter au panier -->
-                        <input type="submit" name="submit" value="Ajouter" class="add_to_cart_btn">
+                        
+                        <?php if(!$product_cart_check){
+                        echo "<input class='add_to_cart_btn' type='submit' name='submit' value='Ajouter'>";
+                        }else{
+                            echo "<input class='add_to_cart_btn_disabled' type='submit' name='submit' value='Ajouter' disabled>";
+                            echo "<p class='form_error_message'>Ce produit est déjà dans votre panier</p>";
+                        }?>
                 </form>
             </div>
         </div>

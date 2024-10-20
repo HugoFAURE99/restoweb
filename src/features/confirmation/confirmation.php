@@ -20,33 +20,21 @@
     $dbh = connect_db(); // Connexion via PDO
 
     // Récupération de l'ID de la commande, par exemple via un paramètre GET ou POST (ici statiquement défini pour l'exemple)
-    $id_commande = 3;
+    $idCom=$_SESSION['idCom'];
 
     // Vérifier que l'ID de commande est bien défini et supérieur à 0
-    if ($id_commande > 0) {
+    if ($idCom) {
         // Préparation de la requête pour récupérer les informations de la commande
-        $sql = "SELECT idCom, totalComTTC FROM Commande WHERE idCom = :id_commande";
-        $stmt = $dbh->prepare($sql); 
-        $stmt->bindParam(':id_commande', $id_commande, PDO::PARAM_INT);
+        $sql = "SELECT totalComTTC FROM Commande WHERE idCom = :id_commande";
+        $sth = $dbh->prepare($sql); 
+        $sth->execute(array(':id_commande' => $idCom));
+        $order = $sth->fetch(PDO::FETCH_ASSOC);
 
-        // Exécution de la requête et récupération des résultats
-        if ($stmt->execute()) {
-            $commande = $stmt->fetch(PDO::FETCH_ASSOC);
+        // Récupération des informations de la commande
+        $totalComTTC = $order['totalComTTC'];
 
-            // Si des données sont retournées, on les stocke, sinon on indique qu'elles sont inconnues
-            if ($commande) {
-                $numero_commande = $commande['idCom'];
-                $montant_commande = $commande['totalComTTC'];
-            } else {
-                $numero_commande = "inconnu";
-                $montant_commande = "inconnu";
-            }
-        } else {
-            die("Problème lors de la récupération des informations de la commande.");
-        }
     } else {
-        $numero_commande = "inconnu";
-        $montant_commande = "inconnu";
+        echo "Numero de commande inexistant.";
     }
     ?>
 
@@ -54,12 +42,12 @@
     <div class="page">
         <div class='confirmation_container'>
             <h2>Commande confirmée !</h2>
-            <?php if ($numero_commande !== "inconnu") : ?>
-                <p>Votre commande n°<?php echo htmlspecialchars($numero_commande); ?> d'un montant de <?php echo htmlspecialchars($montant_commande); ?> € a bien été validée.</p>
-            <?php else : ?>
-                <p>Impossible de retrouver cette commande.</p>
-            <?php endif; ?>
-            <a href="../../index.php">Retour à l'accueil</a>
+            <?php
+            echo 
+                "<p> Votre commande <strong>". $idCom ."</strong> a été confirmée avec succès.</p>
+                <p> Le total de la commande est de <strong>". $totalComTTC ."</strong> $ .</p>";
+            ?>
+            <a href="../reset/reset.php">Retour à l'accueil</a>
         </div>
     </div>
 

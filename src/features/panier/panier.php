@@ -5,7 +5,7 @@ include "../../functions/connect_db.php";
 include "../../functions/get_products.php";
 include "../../functions/get_product.php";
 include "../../functions/insert_ligne_commande.php"; 
-include "../../functions/insert_commande.php";    
+include "../../functions/insert_commande.php";
 
 //--------------------------------definition des vaziables-------------------------------------
 
@@ -24,18 +24,20 @@ $totalHT=0;
 
 $idUtil=$_SESSION['idUtil']; 
 
+$instertState=false;
+
 
 $submit = isset($_POST['submit']);
-if ($submit){
+if ($submit && count($cart)>0){
   if(isset($_POST['check'])){
         $typeCom='A emporter';
     }else{
         $typeCom='Sur place';
     }
-    $idCom=insert_commande($_POST['totalHT'],$typeCom,$idUtil);
-    print_r($idCom);    
+    $instertState=insert_commande($_POST['totalHT'],$typeCom,$idUtil);
+    $idCom = $_SESSION['idCom'];//recuperation de l'id de la commande qui vient d'être créée
+
     for($i=0;$i<count($cart);$i++){
-        echo "coucou";
         insert_ligne_commande($_POST['idPro'.$i],$_POST['qteLigne'.$i],$_POST['totalLigneHT'.$i],$idCom);
         
 
@@ -100,8 +102,6 @@ header("Refresh:4; ../payer/payer.php");
                               
                                 $j++;
                             }
-                            
-                            
                         }
     
                     echo "<input type='hidden' name='totalHT' value='" . $totalHT . "'>";
@@ -121,7 +121,17 @@ header("Refresh:4; ../payer/payer.php");
                 </div>
                 
             </div>
-            <input type="submit" name= "submit" value="Valider">
+            <?php if(count($cart)>0){
+                echo "<input type='submit' name= 'submit' value='Valider'>";
+            }else{
+                echo "<input type='submit' name= 'submit' value='Valider' disabled>";
+                echo "<p class='form_error_message'>Veuillez ajouter au moins un produit à votre panier</p>";
+            }
+            if($instertState==true){
+                echo "<p class='form_success_message'>Commande ajoutée avec succès</p>";
+                echo "<p class='form_success_message'>Redirection vers la page de paiement dans 5 secondes</p>";
+            }
+            ?>
             </form>
         </div>
 

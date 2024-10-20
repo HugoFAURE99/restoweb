@@ -70,3 +70,14 @@
 .add_to_cart_btn:hover {
     background-color: #e2d5aa;
 }
+
+.add_to_cart_btn_disabled {
+    padding: 10px 20px;
+    width: fit-content;
+    font-size: 1.2rem;
+    background-color: #a3a3a3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: line-through;
+}

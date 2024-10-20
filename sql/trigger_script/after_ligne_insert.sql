@@ -25,5 +25,5 @@ CREATE TRIGGER `after_ligne_insert` AFTER INSERT ON `lignecommandes`
     -- Met à jour le total commande TTC dans la table commande
     UPDATE commande
     SET totalComTTC = v_total_TTC
-    WHERE idCom = NEW.idCom;  -- Assurez-vous que 'id' est la clé primaire de la table commande
+    WHERE idCom = NEW.idCom;
 END

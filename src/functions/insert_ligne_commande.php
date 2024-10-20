@@ -8,7 +8,6 @@ function insert_ligne_commande($id, $qte, $total,$idCom){
     }catch(PDOException $e){
         die("Erreur dans la fonction insertLigneCommande : ".$e->getMessage());   
     }
-    echo "Ligne ajoutée avec succès";
 }
 
 
