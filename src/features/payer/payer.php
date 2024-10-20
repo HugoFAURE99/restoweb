@@ -12,6 +12,23 @@ $error_message = null;
 $submit = isset($_POST['submit']);
 $paymentState=false;
 
+$idCom=$_SESSION['idCom'];
+
+    // Vérifier que l'ID de commande est bien défini et supérieur à 0
+    if ($idCom) {
+        // Préparation de la requête pour récupérer les informations de la commande
+        $sql = "SELECT totalComTTC FROM Commande WHERE idCom = :id_commande";
+        $sth = $pdo->prepare($sql); 
+        $sth->execute(array(':id_commande' => $idCom));
+        $order = $sth->fetch(PDO::FETCH_ASSOC);
+
+        // Récupération des informations de la commande
+        $totalComTTC = $order['totalComTTC'];
+
+    } else {
+        echo "Numero de commande inexistant.";
+    }
+
 if ($submit) {
     $idCom = $_SESSION['idCom'];
 
@@ -48,6 +65,9 @@ if ($submit) {
     <div class="page">
         <div class="payment_container">
             <h1>Paiement de votre commande</h1>
+            <?php
+            echo "<h3> Total de la commande : ". $totalComTTC ." $</h3>";
+            ?>
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                 <input type="text" name="cb_number" placeholder="N° de CB" required="required">
                 <input type="text" name="exp_date" placeholder="Date expiration" required="required">
