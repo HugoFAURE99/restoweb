@@ -11,6 +11,8 @@ script indépendants quand meme.
 
 - (Ajouter des photos ou un trucs plus sympa dans les cartes des plats)
 
+========================================================================================================================================
+
 - Faire les APIs et verifier leur fonctionnement
 
 - Commenter un peu plus le code
