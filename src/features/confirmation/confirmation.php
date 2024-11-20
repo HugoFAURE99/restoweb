@@ -45,7 +45,7 @@
             <?php
             echo 
                 "<p> Votre commande <strong>". $idCom ."</strong> a été confirmée avec succès.</p>
-                <p> Le total de la commande est de <strong>". $totalComTTC ."</strong> $ .</p>";
+                <p> Le total de la commande est de <strong>". $totalComTTC ."</strong> € .</p>";
             ?>
             <a href="../reset/reset.php">Retour à l'accueil</a>
         </div>

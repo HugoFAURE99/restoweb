@@ -4,7 +4,7 @@ function insert_commande($totalComTTC,$typeCom,$idUtil){
     $sql="INSERT INTO commande (etatCom, totalComTTC, typeCom, dateCom, heureCom, idUtil) VALUES (:etatCom, :totalComTTC, :typeCom, :dateCom, :heureCom, :idUtil)";
     try{
         $sth=$dbh->prepare($sql);
-        $sth->execute(array(':etatCom'=>'En attente',':totalComTTC'=>$totalComTTC,':typeCom'=>$typeCom,':dateCom'=>date('Y-m-d'),':heureCom'=>date('H:i:s'),':idUtil'=>$idUtil));
+        $sth->execute(array(':etatCom'=>0,':totalComTTC'=>$totalComTTC,':typeCom'=>$typeCom,':dateCom'=>date('Y-m-d'),':heureCom'=>date('H:i:s'),':idUtil'=>$idUtil));
         $insertState=true;//Insertion réussie
     }catch(PDOException $e){
         die("Erreur dans la fonction insertCommande : ".$e->getMessage());   

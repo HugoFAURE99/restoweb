@@ -22,11 +22,11 @@ VALUES
 /* Insertion of data in "Commande" table */
 INSERT INTO Commande (etatCom, totalComTTC, typeCom, dateCom, heureCom, idUtil)
 VALUES 
-('En cours', 35.50, 'Sur place', '2024-10-03', '12:30:00', 1),
-('Livré', 20.00, 'Livraison', '2024-10-03', '13:15:00', 1),
-('En cours', 42.80, 'Sur place', '2024-10-02', '14:00:00', 1),
-('Annulée', 15.50, 'À emporter', '2024-10-01', '11:45:00', 1),
-('Livré', 65.00, 'Livraison', '2024-10-03', '15:30:00', 1);
+(0, 35.50, 'Sur place', '2024-10-03', '12:30:00', 1),
+(3, 20.00, 'Livraison', '2024-10-03', '13:15:00', 1),
+(0, 42.80, 'Sur place', '2024-10-02', '14:00:00', 1),
+(2, 15.50, 'À emporter', '2024-10-01', '11:45:00', 1),
+(3, 65.00, 'Livraison', '2024-10-03', '15:30:00', 1);
 
 /* Insertion of data in "ligneCommandes" table */
 INSERT INTO ligneCommandes (idCom, idProduit, qteLigne, totalLigneHT)

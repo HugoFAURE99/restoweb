@@ -38,7 +38,7 @@ if (!isset($_SESSION['cart'])) {
                 echo "<a href='features/produit/produit.php?id=" . $product['idProduit'] . "' class='product_card_link'>";
                 echo "<div class='product_card'>
                         <h2>" . $product['libProduit'] . "</h2>
-                        <p>" . $product['prixProHT'] . " $</p>
+                        <p>" . $product['prixProHT'] . " €</p>
                     </div>"; 
                 echo "</a>";
             }
@@ -67,7 +67,7 @@ if (!isset($_SESSION['cart'])) {
                     echo "<a href='features/produit/produit.php?id=" . $product['idProduit'] . "' class='product_card_link'>";
                     echo "<div class='product_card'>
                             <h2>" . $product['libProduit'] . "</h2>
-                            <p>" . $product['prixProHT'] . " $</p>
+                            <p>" . $product['prixProHT'] . " €</p>
                         </div>"; 
                     echo "</a>";
 

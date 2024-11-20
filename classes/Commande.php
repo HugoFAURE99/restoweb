@@ -4,7 +4,7 @@
 class Commande {
 
     public int $idCommande;
-    public string $etatCommande;
+    public int $etatCommande;
     public float $totalCommandeTTC;
     public string $typeCommande;
     public string $dateCommande;

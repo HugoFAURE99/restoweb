@@ -113,7 +113,7 @@ header("Refresh:4; ../payer/payer.php");
             <div class='cart_total_container'>
                 <?php
             
-                    echo " <h3> Total HT: " . $totalHT . " $</h3>";
+                    echo " <h3> Total HT: " . $totalHT . " €</h3>";
                 ?>
                 <div class='check_box_container'>
                     <input type="checkbox" name="check" value="true">

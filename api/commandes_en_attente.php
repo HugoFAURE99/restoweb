@@ -14,7 +14,7 @@ session_start();
 $pdo = connect_db();
 
 // Récupérer les commandes  avec etat "en attente" en BDD
-$sql = "SELECT * FROM Commande WHERE etatCom = 'En attente'";
+$sql = "SELECT * FROM Commande WHERE etatCom = 0";
 try {
     $sth = $pdo->prepare($sql);
     $sth->execute();

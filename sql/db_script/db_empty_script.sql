@@ -19,7 +19,7 @@ CREATE TABLE Utilisateur (
 DROP TABLE IF EXISTS `Commande`;
 CREATE TABLE Commande (
     idCom INT AUTO_INCREMENT PRIMARY KEY,
-    etatCom VARCHAR(50) NOT NULL,
+    etatCom INT NOT NULL,
     totalComTTC DECIMAL(15,2) NOT NULL,
     typeCom VARCHAR(50) NOT NULL,
     dateCom DATE NOT NULL,

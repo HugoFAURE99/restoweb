@@ -59,7 +59,7 @@ if ($submit) {
             <!-- Colonne détails du produit -->
             <div class="product_details">
                 <h1><?php echo $product['libProduit']; ?></h1>
-                <p>Prix/Unité : <?php echo $product['prixProHT']; ?> $</p>
+                <p>Prix/Unité : <?php echo $product['prixProHT']; ?> €</p>
                 
 
                 <!-- Sélecteur de quantité -->

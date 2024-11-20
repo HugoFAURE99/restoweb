@@ -1,24 +1,29 @@
 <?php
 {
-include "../../functions/connect_db.php";
+include "../src/functions/connect_db.php";
 
 session_start();
 
 $pdo= connect_db();
 
+$id = isset($_GET['id']) ? $_GET['id'] : null;
 
- $sql = "UPDATE commande set etatCom='refuser' WHERE idCom = :id";
+if ($id == null) {
+    die("Veuillez renseigner un ID dans l'url");
+}
+
+
+ $sql = "UPDATE commande set etatCom=2 WHERE idCom = :id";
 
 
  try {
-     $sth = $dbh->prepare($sql);
+     $sth = $pdo->prepare($sql);
      $sth->execute(array(':id' => $id));
-     $etat = $sth->fetch(PDO::FETCH_ASSOC);
  } catch (PDOException $ex) {
      die("Erreur lors de la requête SQL : " . $ex->getMessage());
  }
 
-echo "commande refuser";
+echo "la commande " . $id . " a été refusée";
 
 
 

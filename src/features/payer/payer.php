@@ -66,7 +66,7 @@ if ($submit) {
         <div class="payment_container">
             <h1>Paiement de votre commande</h1>
             <?php
-            echo "<h3> Total de la commande : ". $totalComTTC ." $</h3>";
+            echo "<h3> Total de la commande : ". $totalComTTC ." €</h3>";
             ?>
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                 <input type="text" name="cb_number" placeholder="N° de CB" required="required">
